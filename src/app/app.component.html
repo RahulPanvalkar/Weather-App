@@ -1,0 +1,21 @@
+
+<div class="outer-most-div">
+
+  <nav class="navbar">
+    <div class="navbar-label" style="">
+      <img src="../assets/forcast.png">
+      <span style="padding: 5px;">Forcast</span>
+      <div class="toggle">
+        C
+        <label class="switch">
+          <input type="checkbox" (change)="toggleUnits()" [checked]="toggleValue" >
+          <span class="slider round"></span>
+        </label>
+        F
+      </div>
+    </div>
+  </nav>
+  
+  <home [inCelsius]="!toggleValue"></home>
+
+</div>

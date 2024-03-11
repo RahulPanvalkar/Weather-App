@@ -1,0 +1,69 @@
+<div class="search">
+    <input type="text" placeholder="Search City" (keydown.enter)="onEnterKeyPressed($event)">
+</div>
+
+<div class="container">
+    
+  <div class="upper-data">
+    <div class="date-time-info">
+      <div>
+          <img src="../../../assets/forcast.png" style="width: 8em; height: 6em; margin-top: 10px; margin-left: 20px;">
+      </div>
+      <div *ngIf="lastUpdatedTime">Last Updated at {{ lastUpdatedTime | date: 'hh:mm a' }}</div>
+      <div class="current-time" *ngIf="currentDateTime">{{ currentDateTime | date: 'hh:mm a'}}</div>
+      <div *ngIf="currentDateTime"> {{ currentDateTime | date: 'EEE. dd-MMM' | uppercase }} </div>
+    </div>
+    <div class="weather-data">
+      <div class="location">{{cityName}}</div>
+      <div class="temperature" *ngIf="temperature_c">{{ inCelsius ? temperature_c : temperature_f | number: '1.0-0' }} {{ inCelsius ? '°C' : '°F' }} </div>
+      <div class="status">{{weatherStatus}}</div>
+    </div>
+  </div>
+  
+  <div class="lower-data">
+    <div class="more-info-label">More Information</div>
+    <div class="more-info-container">
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/min.png">
+          <span>min</span>
+        </div>
+        <div class="info-block-value" *ngIf="minTemp_c">
+          {{inCelsius ? minTemp_c : minTemp_f }} {{ inCelsius ? '°C' : '°F' }}
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/max.png">
+          <span>max</span>
+        </div>
+        <div class="info-block-value" *ngIf="maxTemp_c">
+          {{inCelsius ? maxTemp_c : maxTemp_f}} {{ inCelsius ? '°C' : '°F' }}
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/humidity.png">
+          <span>humidity</span>
+        </div>
+        <div class="info-block-value" *ngIf="humidity">
+          {{humidity}}%
+        </div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-block-label">
+          <img src="../assets/wind.png">
+          <span>wind</span>
+        </div>
+        <div class="info-block-value" *ngIf="wind">
+          {{wind}} km/hr
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
