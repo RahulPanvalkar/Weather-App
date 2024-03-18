@@ -1,14 +1,19 @@
 
 <div class="outer-most-div">
 
+  <div>
+    <sidebar></sidebar>
+  </div>
+  
+  
   <nav class="navbar">
     <div class="navbar-label" style="">
-      <img src="../assets/forcast.png">
-      <span style="padding: 5px;">Forcast</span>
+      <img src="../assets/weather.png">
+      <span style="padding: 5px;">Weather</span>
       <div class="toggle">
         C
         <label class="switch">
-          <input type="checkbox" (change)="toggleUnits()" [checked]="toggleValue" >
+          <input type="checkbox" (change)="toggleUnits()" >
           <span class="slider round"></span>
         </label>
         F
@@ -16,6 +21,8 @@
     </div>
   </nav>
   
-  <home [inCelsius]="!toggleValue"></home>
+  <!--<home [inCelsius] = "!toggleValue"></home>-->
 
+  <router-outlet ></router-outlet>
+  
 </div>

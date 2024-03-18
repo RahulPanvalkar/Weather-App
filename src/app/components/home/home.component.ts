@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { WeatherForcast } from 'src/app/models/forcast.model';
 import { WeatherData } from 'src/app/models/weather.model';
+import { ToggleService } from 'src/app/services/toggle-service';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
@@ -10,7 +12,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 })
 export class HomeComponent {
 
-  @Input() inCelsius!: boolean;
+  inCelsius!: boolean;
 
   currentDateTime!: string;
   lastUpdatedTime!: string;
@@ -28,7 +30,23 @@ export class HomeComponent {
   maxTemp_f!: number;
   temperature_f!:number;
 
-  constructor(private weatherService: WeatherService){  }
+  constructor(private weatherService: WeatherService,private toggleService: ToggleService){  }
+  toggleValueSubscription!: Subscription;
+
+  ngOnInit(): void {
+    this.inCelsius = !this.toggleService.toggleValue;
+
+    this.toggleValueSubscription = this.toggleService.toggleValue$.subscribe(value => {
+      console.log("toggleValueSubscription...");
+      this.inCelsius = !value; 
+    });
+
+  }
+
+  ngOnDestroy(): void {
+    console.log("ngOnDestroy...");
+    this.toggleValueSubscription.unsubscribe();
+  }
 
   onEnterKeyPressed(event: any) {
     console.log("inside onEnterKeyPressed..")
@@ -45,15 +63,16 @@ export class HomeComponent {
               .subscribe({
                 next: (forecastResponse: any) => {
                   console.log("forecast response :: ", forecastResponse);
-
                   this.updateData(weatherResponse, forecastResponse);
-
                 },
 
                 error: (errorCode) => {
                   console.error("Error fetching forecast data: ", errorCode);
                   if(errorCode == '400'){
                     alert("Invalid city! please check city name");
+                  }
+                  else if(errorCode == '502'){
+                    alert("Something went wrong! please try again");
                   }
                 }
               });

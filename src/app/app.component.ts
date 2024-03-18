@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToggleService } from './services/toggle-service';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'WeatherApp';
-
-  toggleValue: boolean = false;
-
+  
+  constructor(private toggleService: ToggleService) {}
+  
   toggleUnits(): void {
-    this.toggleValue = !this.toggleValue;
-    console.log("toggleValue changed => ",this.toggleValue);
+    this.toggleService.setToggleValue(!this.toggleService.toggleValue);
+    console.log("toggleValue changed => ",this.toggleService.toggleValue);
   }
 
 }

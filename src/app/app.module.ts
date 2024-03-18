@@ -5,11 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ForcastComponent } from './components/forcast/forcast.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SidebarComponent,
+    ForcastComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,

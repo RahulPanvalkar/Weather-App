@@ -1,0 +1,15 @@
+
+<div class="sidebar" [style.width.px]="sidebarWidth">
+  <ul >
+      <li>
+        <img src="../../../assets/home.png" (click)="adjustWidth()" > <a routerLink="/" ><span [hidden]="hidden">Home</span></a>
+      </li>
+      <li>
+        <img src="../../../assets/forcast.png" (click)="adjustWidth()" > <a routerLink="/forcast" ><span [hidden]="hidden">Forcast</span></a>
+      </li>
+      <li>
+        <img src="../../../assets/about.png" (click)="adjustWidth()" > <a routerLink="/about" ><span [hidden]="hidden">About</span></a>
+      </li>
+  </ul>
+</div>
+  
