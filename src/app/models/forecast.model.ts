@@ -1,4 +1,4 @@
-export interface WeatherForcast {
+export interface WeatherForecast {
     location: Location
     current: Current
     forecast: Forecast

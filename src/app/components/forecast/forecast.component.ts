@@ -6,11 +6,11 @@ import { ToggleService } from 'src/app/services/toggle-service';
 import { WeatherService } from 'src/app/services/weather.service';
 
 @Component({
-  selector: 'home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'forecast',
+  templateUrl: './forecast.component.html',
+  styleUrls: ['./forecast.component.css']
 })
-export class HomeComponent {
+export class ForecastComponent {
 
   inCelsius!: boolean;
 
@@ -37,11 +37,10 @@ export class HomeComponent {
     this.inCelsius = !this.toggleService.toggleValue;
 
     this.toggleValueSubscription = this.toggleService.toggleValue$.subscribe(value => {
-      console.log("ngOnInit >> toggleValueSubscription...");
+      console.log("toggleValueSubscription...");
       this.inCelsius = !value; 
     });
 
-    this.setPreviousData();
   }
 
   ngOnDestroy(): void {
@@ -64,11 +63,10 @@ export class HomeComponent {
               .subscribe({
                 next: (forecastResponse: any) => {
                   console.log("forecast response :: ", forecastResponse);
-                  this.weatherService.storeWeatherAndForecastData(weatherResponse,forecastResponse); // store data in service
-                  this.updateView(weatherResponse, forecastResponse);
+                  this.updateData(weatherResponse, forecastResponse);
                 },
 
-                error: (errorCode) => {
+                error: (errorCode: string) => {
                   console.error("Error fetching forecast data: ", errorCode);
                   if(errorCode == '400'){
                     alert("Invalid city! please check city name");
@@ -81,7 +79,7 @@ export class HomeComponent {
 
           },
 
-          error: (errorCode) => {
+          error: (errorCode: string) => {
             console.error("Error fetching weather data: ", errorCode);
             if(errorCode == '400'){
               alert("Invalid city! please check city name");
@@ -93,28 +91,11 @@ export class HomeComponent {
 
   }
 
-  setPreviousData(){
-    const previousDataObj: { weather: WeatherData, forecast: WeatherForecast } = this.weatherService.getPreviousData(); 
-    console.log("setPreviousData >> previousDataObj :: ",previousDataObj);
+  updateData(weatherData: WeatherData, forcastData: WeatherForecast) {
+    console.log("weatherData :: ", weatherData);
+    console.log("forcastData :: ", forcastData);
+    console.log('inCelsius :: ', this.inCelsius);
 
-    if (!previousDataObj || !previousDataObj.weather || !previousDataObj.forecast) {
-      console.error("previousDataObj or its properties are undefined.");
-      return;
-    }
-
-    let weatherData = previousDataObj.weather;
-    let forecastData = previousDataObj.forecast;
-    
-    this.updateView(weatherData,forecastData);
-    
-  }
-  
-  private updateView(weatherData: WeatherData, forecastData: WeatherForecast){
-    
-    console.log("updateView >> weatherData :: ", weatherData);
-    console.log("updateView >> forcastData :: ", forecastData);
-    console.log('updateView >> inCelsius :: ', this.inCelsius);
-    
     this.iconURL = weatherData.current.condition.icon;
     this.currentDateTime = weatherData.location.localtime;
     this.lastUpdatedTime = weatherData.current.last_updated;
@@ -124,13 +105,13 @@ export class HomeComponent {
     this.wind = weatherData.current.wind_kph;
 
     this.temperature_c = weatherData.current.temp_c;
-    this.minTemp_c = forecastData.forecast.forecastday[0].day.mintemp_c;
-    this.maxTemp_c = forecastData.forecast.forecastday[0].day.maxtemp_c;
+    this.minTemp_c = forcastData.forecast.forecastday[0].day.mintemp_c;
+    this.maxTemp_c = forcastData.forecast.forecastday[0].day.maxtemp_c;
 
     this.temperature_f = weatherData.current.temp_f;
-    this.minTemp_f = forecastData.forecast.forecastday[0].day.mintemp_f;
-    this.maxTemp_f = forecastData.forecast.forecastday[0].day.maxtemp_f;
-
+    this.minTemp_f = forcastData.forecast.forecastday[0].day.mintemp_f;
+    this.maxTemp_f = forcastData.forecast.forecastday[0].day.maxtemp_f;
+    
   }
-
 }
+

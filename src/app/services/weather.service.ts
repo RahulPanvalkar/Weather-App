@@ -3,12 +3,16 @@ import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 import { Observable, catchError, throwError } from 'rxjs';
 import { WeatherData } from '../models/weather.model';
-import { WeatherForcast } from '../models/forcast.model';
+import { WeatherForecast } from '../models/forecast.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
+
+  previousWeatherData!: WeatherData ;
+  previousForecastData!: WeatherForecast ;
+
   constructor(private http:HttpClient) { }
 
   getWeatherData(cityName: string): Observable<WeatherData> {
@@ -33,7 +37,7 @@ export class WeatherService {
     
   }
 
-  getForcastData(cityName: string): Observable<WeatherForcast> {
+  getForcastData(cityName: string): Observable<WeatherForecast> {
     console.log("inside getForcastData..");
     const url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${cityName}&days=3`;
     const options = {
@@ -43,7 +47,7 @@ export class WeatherService {
       }
     };
 
-    return this.http.get<WeatherForcast>(url, options).pipe(
+    return this.http.get<WeatherForecast>(url, options).pipe(
       catchError(error => {
         console.error('Error fetching forcast data:', error);
         if (error.status) {
@@ -53,6 +57,15 @@ export class WeatherService {
       })
     );
 
+  }
+
+  storeWeatherAndForecastData(weatherData: WeatherData, forcastData: WeatherForecast): void {
+    this.previousWeatherData = weatherData;
+    this.previousForecastData = forcastData;
+  }
+
+  getPreviousData(): { weather: WeatherData, forecast: WeatherForecast } {
+    return { weather: this.previousWeatherData, forecast: this.previousForecastData };
   }
 
 }

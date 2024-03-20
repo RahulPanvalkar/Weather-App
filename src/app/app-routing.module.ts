@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './components/about/about.component';
 import { HomeComponent } from './components/home/home.component';
-import { ForcastComponent } from './components/forcast/forcast.component';
+import { ForecastComponent } from './components/forecast/forecast.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent }, 
   { path: 'home', component: HomeComponent }, 
-  { path: 'forcast', component: ForcastComponent }, 
+  { path: 'forecast', component: ForecastComponent }, 
   { path: 'about', component: AboutComponent }, 
 ];
 
