@@ -16,17 +16,20 @@
 .container{
     position: absolute;
     width: 600px;
-    height: 75vh;
+    height: 85vh;
     background-color: var(--grey-1);
     border-radius: 20px;
+    margin-top: 30px;
 }
 
 .upper-data{
     position: relative;
     overflow: hidden;
-    height: 47%;
+    height: 35%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     background-color: var(--blue-2);
     margin-top: 1em;
     margin-right: 1em;
@@ -35,14 +38,11 @@
 }
 
 .upper-data img{
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
 }
-
-
 
 .weather-data{
     display:flex;
@@ -104,7 +104,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 50%;
+    height: 56%;
     
     padding: 1em;
     display: flex;
@@ -116,48 +116,68 @@
     font-weight: 800;
 }
 
+.nav-buttons{
+    display: inline;
+    margin-left: 67%;
+}
+
+.nav-buttons button{
+    border-radius: 30%;
+    width: 30px;
+    margin-left: 10px;
+    color: var(--white);
+    background: var(--blue-2);
+    border: none;
+    padding: 2px;
+}
+
 .more-info-container{
-    flex: 1;
+    height: 100vh;
     background-color: var(--blue-2);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     margin-top: 1em;
 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
+    overflow: hidden;
 }
 
-.info-block{
-    width: 50%;
+.card-container{
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
-.info-block-label{
-    width: 50%;
+.card{
+    width: 90px;
+    height: 110px;
+    background-color: white ;
+    margin: 10px;
+    border-radius: 5px;
+
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    align-items: center;
-
+    text-align: center;
+    font-size: 12px;
 }
 
-.info-block-label img{
-    width: 1.5em;
+.card div{
+    font-size: smaller;
+    margin-bottom: 5px;
 }
 
-.info-block-label span{
-    color: var(--white);
-    font-size: 0.8em;
-    /*font-weight: 800;*/
+.nav-buttons button:hover{
+    font-weight: bold;
 }
-
-.info-block-value{
-    width: 50%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    color: var(--white);
-}
-

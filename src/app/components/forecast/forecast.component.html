@@ -1,67 +1,44 @@
-<div class="search">
-    <input type="text" placeholder="Search City" (keydown.enter)="onEnterKeyPressed($event)">
-</div>
 
 <div class="container">
     
+  <div class="more-info-label" style="margin: 15px;">Forecast Data</div>
   <div class="upper-data">
-    <div class="date-time-info">
-      <div>
-          <img src="../../../assets/weather.png" >
+    <div class="card-container">
+ 
+      <div class="card" style="width: 160px; height: 90%;" *ngFor="let forecast of dataCard">
+        <div>{{ forecast.date | date: 'dd-MMM' | uppercase }}</div>
+        <div *ngIf="forecast.day.avgtemp_c">{{ inCelsius ? forecast.day.avgtemp_c : forecast.day.avgtemp_f | number: '1.0-0' }} {{ inCelsius ? '°C' : '°F' }}</div>
+        <div><img [src]="forecast.day.condition.icon" alt="tempImage" style="width: 50px;"></div>
+        <div>{{forecast.day.condition.text}}</div>
+        <div  *ngIf="forecast.day.minTemp_c">min temp: {{inCelsius ? forecast.day.minTemp_c : forecast.day.minTemp_f }} {{ inCelsius ? '°C' : '°F' }}</div>
+        <div *ngIf="forecast.day.maxTemp_c">max temp:  {{inCelsius ? forecast.day.maxTemp_c : forecast.day.maxTemp_f}} {{ inCelsius ? '°C' : '°F' }}</div>
+        <div *ngIf="forecast.day.avghumidity">humidity: {{forecast.day.avghumidity}}%</div>
+        <div *ngIf="forecast.day.avgvis_km">wind: {{forecast.day.avgvis_km}} km/hr</div>
       </div>
-      <div *ngIf="lastUpdatedTime">Last Updated at {{ lastUpdatedTime | date: 'hh:mm a' }}</div>
-      <div class="current-time" *ngIf="currentDateTime">{{ currentDateTime | date: 'hh:mm a'}}</div>
-      <div *ngIf="currentDateTime"> {{ currentDateTime | date: 'EEE. dd-MMM' | uppercase }} </div>
-    </div>
-    <div class="weather-data">
-      <div class="location">{{cityName}}</div>
-      <div class="temperature" *ngIf="temperature_c">{{ inCelsius ? temperature_c : temperature_f | number: '1.0-0' }} {{ inCelsius ? '°C' : '°F' }} </div>
-      <div class="status">{{weatherStatus}}</div>
-    </div>
+    
+  </div>
   </div>
   
   <div class="lower-data">
-    <div class="more-info-label">Hourly Data</div>
+    <div class="more-info-label">
+      <span>Hourly Data</span> 
+      <div class="nav-buttons">
+        <button (click)="getPreviousCards()"> < </button>
+        <button (click)="getNextCards()"> > </button>
+      </div>
+    </div>
+
     <div class="more-info-container">
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/min.png">
-          <span>min</span>
+      <div class="card-container">
+      
+        <div class="card" *ngFor="let card of getVisibleCards()">
+          <div>{{ card.time | date: 'HH:mm' }}</div>
+          <div><img [src]="card.condition.icon" alt="tempImage" style="width: 40px;"></div>
+          <div>{{card.condition.text}}</div>
+          <div>{{ inCelsius ? card.temp_c : card.temp_f | number: '1.0-0' }} {{ inCelsius ? '°C' : '°F' }}</div>
         </div>
-        <div class="info-block-value" *ngIf="minTemp_c">
-          {{inCelsius ? minTemp_c : minTemp_f }} {{ inCelsius ? '°C' : '°F' }}
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/max.png">
-          <span>max</span>
-        </div>
-        <div class="info-block-value" *ngIf="maxTemp_c">
-          {{inCelsius ? maxTemp_c : maxTemp_f}} {{ inCelsius ? '°C' : '°F' }}
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/humidity.png">
-          <span>humidity</span>
-        </div>
-        <div class="info-block-value" *ngIf="humidity">
-          {{humidity}}%
-        </div>
-      </div>
-
-      <div class="info-block">
-        <div class="info-block-label">
-          <img src="../assets/wind.png">
-          <span>wind</span>
-        </div>
-        <div class="info-block-value" *ngIf="wind">
-          {{wind}} km/hr
-        </div>
-      </div>
+      
+    </div>
 
     </div>
   </div>
