@@ -13,7 +13,7 @@ export class AppComponent {
   
   toggleUnits(): void {
     this.toggleService.setToggleValue(!this.toggleService.toggleValue);
-    console.log("toggleValue changed => ",this.toggleService.toggleValue);
+    //console.log("toggleValue changed => ",this.toggleService.toggleValue);
   }
 
 }

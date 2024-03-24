@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class AboutComponent{
 
   onInit(){
-    console.log("about component called..");
+    //console.log("about component called..");
   }
   
 }

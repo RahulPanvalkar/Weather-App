@@ -1,5 +1,5 @@
 <div class="search">
-    <input type="text" placeholder="Search City" (keydown.enter)="onEnterKeyPressed($event)">
+    <input type="text" placeholder="Location" (keydown.enter)="onEnterKeyPressed($event)">
 </div>
 
 <div class="container">
@@ -7,7 +7,6 @@
   <div class="upper-data">
     <div class="date-time-info">
       <div>
-          <!--<img src="../../../assets/weather.png" >-->
           <img src="assets/weather.png" >
       </div>
       <div *ngIf="lastUpdatedTime">Last Updated at {{ lastUpdatedTime | date: 'hh:mm a' }}</div>
@@ -26,7 +25,6 @@
     <div class="more-info-container">
       <div class="info-block">
         <div class="info-block-label">
-          <!--<img src="../assets/min.png">-->
           <img src="assets/min.png">
           <span>min</span>
         </div>
@@ -37,7 +35,6 @@
 
       <div class="info-block">
         <div class="info-block-label">
-          <!--<img src="../assets/max.png">-->
           <img src="assets/max.png">
           <span>max</span>
         </div>
@@ -48,7 +45,6 @@
 
       <div class="info-block">
         <div class="info-block-label">
-          <!--<img src="../assets/humidity.png">-->
           <img src="assets/humidity.png">
           <span>humidity</span>
         </div>
@@ -59,7 +55,6 @@
 
       <div class="info-block">
         <div class="info-block-label">
-          <!--<img src="../assets/wind.png">-->
           <img src="assets/wind.png">
           <span>wind</span>
         </div>

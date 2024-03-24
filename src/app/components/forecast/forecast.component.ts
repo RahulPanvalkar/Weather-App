@@ -13,6 +13,7 @@ import { WeatherService } from 'src/app/services/weather.service';
 export class ForecastComponent {
 
   inCelsius!: boolean;
+  selectedCard: any; 
 
   currentDateTime!: string;
   lastUpdatedTime!: string;
@@ -42,37 +43,38 @@ export class ForecastComponent {
     this.inCelsius = !this.toggleService.toggleValue;
 
     this.toggleValueSubscription = this.toggleService.toggleValue$.subscribe(value => {
-      console.log("toggleValueSubscription...");
+      //console.log("toggleValueSubscription...");
       this.inCelsius = !value; 
     });
 
     this.setData();
-    
+    this.selectedCard = this.dataCard[0]; // Set the first card as selected
+    this.hourlyDataCard = this.selectedCard.hour;
   }
 
   ngOnDestroy(): void {
-    console.log("ngOnDestroy...");
+    //console.log("ngOnDestroy...");
     this.toggleValueSubscription.unsubscribe();
   }
 
   setData(){
     const dataObj: { weather: WeatherData, forecast: WeatherForecast } = this.weatherService.getPreviousData(); 
-    console.log("setData >> dataObj :: ",dataObj);
+    //console.log("setData >> dataObj :: ",dataObj);
 
     if (!dataObj || !dataObj.weather || !dataObj.forecast) {
-      console.error("dataObj or its properties are undefined.");
+      //console.error("dataObj or its properties are undefined.");
       return;
     }
 
     let weatherData = dataObj.weather;
     let forecastData = dataObj.forecast;
     
-    console.log("updateView >> weatherData :: ", weatherData);
-    console.log("updateView >> forcastData :: ", forecastData);
-    console.log('updateView >> inCelsius :: ', this.inCelsius);
+    // console.log("updateView >> weatherData :: ", weatherData);
+    // console.log("updateView >> forcastData :: ", forecastData);
+    //console.log('inCelsius :: ', this.inCelsius);
     
     this.dataCard = forecastData.forecast.forecastday;
-    console.log(this.dataCard);
+    //console.log("dataCard :: ",this.dataCard);
     this.hourlyDataCard = forecastData.forecast.forecastday[0].hour;
     
   }
@@ -91,6 +93,12 @@ export class ForecastComponent {
 
   getVisibleCards(): any[] {
     return this.hourlyDataCard.slice(this.currentIndex, this.currentIndex + this.cardsToShow);
+  }
+
+  selectCard(card: any) {
+    this.selectedCard = card; 
+    this.hourlyDataCard = card.hour;
+    this.getVisibleCards();
   }
 }
 

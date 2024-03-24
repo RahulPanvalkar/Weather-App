@@ -16,7 +16,7 @@ export class WeatherService {
   constructor(private http:HttpClient) { }
 
   getWeatherData(cityName: string): Observable<WeatherData> {
-    console.log("inside getWeatherData..");
+    //console.log("inside getWeatherData..");
     const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${cityName}`;
     const options = {
       headers: {
@@ -27,7 +27,7 @@ export class WeatherService {
 
     return this.http.get<WeatherData>(url, options).pipe(
       catchError(error => {
-        console.error('Error fetching weather data:', error);
+        //console.error('Error fetching weather data:', error);
         if (error.status) {
           console.error('HTTP Error Status:', error.status);
         }
@@ -38,7 +38,7 @@ export class WeatherService {
   }
 
   getForcastData(cityName: string): Observable<WeatherForecast> {
-    console.log("inside getForcastData..");
+    //console.log("inside getForcastData..");
     const url = `https://weatherapi-com.p.rapidapi.com/forecast.json?q=${cityName}&days=3`;
     const options = {
       headers: {
@@ -49,7 +49,7 @@ export class WeatherService {
 
     return this.http.get<WeatherForecast>(url, options).pipe(
       catchError(error => {
-        console.error('Error fetching forcast data:', error);
+        //console.error('Error fetching forcast data:', error);
         if (error.status) {
           console.error('HTTP Error Status:', error.status);
         }

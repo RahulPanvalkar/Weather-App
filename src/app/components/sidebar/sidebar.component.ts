@@ -11,8 +11,7 @@ export class SidebarComponent {
 
   sidebarWidth: number = 50;
 
-  adjustWidth(){
-    console.log("hidden :: ",this.hidden);
+  /*adjustWidth(){
     if(this.hidden){
       this.sidebarWidth = 200;
       this.hidden = false;
@@ -21,6 +20,6 @@ export class SidebarComponent {
       this.sidebarWidth = 50;
       this.hidden = true;
     }
-  }
+  }*/
 
 }

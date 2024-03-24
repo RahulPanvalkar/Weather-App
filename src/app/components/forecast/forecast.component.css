@@ -17,9 +17,16 @@
     position: absolute;
     width: 600px;
     height: 85vh;
+    max-height: 600px;
     background-color: var(--grey-1);
     border-radius: 20px;
     margin-top: 30px;
+}
+
+.forecast-label{
+    margin: 15px; 
+    color: var(--blue-1);
+    font-weight: 800;
 }
 
 .upper-data{
@@ -37,69 +44,54 @@
     
 }
 
-.upper-data img{
-    top: 0;
-    left: 0;
+.card-container{
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: hidden;
 }
 
-.weather-data{
-    display:flex;
+
+.forecast-card{
+    width: 160px;
+    height: 90%;
+    background-color: #e1e6ff ;
+    margin: 10px;
+    border-radius: 5px;
+    color: var(--blue-1);
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 1em;
-}
-
-.location{
-    color: var(--white);
+    justify-content: center;
     text-align: center;
-    font-size: 1.2em;
+    font-size: 12px;
 }
 
-.temperature{
-    color: var(--white);
-    text-align: center;
-    font-size: 3em;
-    font-weight: 900;
-}
-
-.status{
-    color: var(--white);
-    font-size: 1em;
-}
-
-.date-time-info{
-    position: relative;
-    color: var(--white);
-    font-size: 0.65em;
-    display:flex;
-    flex-direction: column;
-    align-items: self-end;
-    padding-top: 10px;
+.forecast-date{
+    margin-bottom: 5px;
     font-weight: 800;
+    font-size: 13px;
 }
 
-.date-time-info div{
-    margin-top: 5px;
-    margin-right: 20px;
-    margin-left: 20px;
+.forecast-temp{
+    font-weight: 600;
 }
 
-.date-time-info div img{
-    width: 8em; 
-    height: 6em; 
-    margin-top: 10px; 
-    margin-left: 20px;
+.forecast-condition{
+    margin-bottom: 5px;
+    font-weight: 600;
 }
 
-.current-time{
-    text-align: center;
-    font-size: 1.4em;
+.selected {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid white;
+    color: white;
 }
 
-/*Lower Half*/
 .lower-data{
     position: relative;
     overflow: hidden;
@@ -111,8 +103,8 @@
     flex-direction: column;
 }
 
-.more-info-label{
-    color: var(--black);
+.hourly-data-label{
+    color: var(--blue-1);
     font-weight: 800;
 }
 
@@ -147,24 +139,13 @@
     overflow: hidden;
 }
 
-.card-container{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    overflow: hidden;
-}
-
-.card{
+.hourly-card{
     width: 90px;
     height: 110px;
-    background-color: white ;
+    background-color: #e1e6ff ;
     margin: 10px;
     border-radius: 5px;
-
+    color: var(--blue-1);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,9 +154,10 @@
     font-size: 12px;
 }
 
-.card div{
+.hourly-card div{
     font-size: smaller;
     margin-bottom: 5px;
+    font-weight: bold;
 }
 
 .nav-buttons button:hover{

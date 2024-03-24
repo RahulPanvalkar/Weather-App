@@ -11,12 +11,14 @@
     border-radius: 20px;
     margin: 20px;
     padding-left: 15px ;
+    background: var(--grey-1);
 }
 
 .container{
     position: absolute;
     width: 600px;
     height: 75vh;
+    max-height: 535px;
     background-color: var(--grey-1);
     border-radius: 20px;
 }
@@ -112,7 +114,7 @@
 }
 
 .more-info-label{
-    color: var(--black);
+    color: var(--blue-1);
     font-weight: 800;
 }
 

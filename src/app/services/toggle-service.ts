@@ -10,12 +10,12 @@ export class ToggleService {
   toggleValue$ = new Subject<boolean>();
 
   get toggleValue(): boolean {
-    console.log("getToggleValue...");
+    //console.log("getToggleValue...");
     return this._toggleValue;
   }
 
   setToggleValue(value: boolean): void {
-    console.log("setToggleValue >> value :: ",value);
+    //console.log("setToggleValue >> value :: ",value);
     this._toggleValue = value;
     this.toggleValue$.next(value); 
   }
